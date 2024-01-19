@@ -10,7 +10,7 @@ describe Segment do
   let(:to) { 'Rotterdam Centraal' }
   let(:departure_at) { DateTime.new(2024, 1, 13, 10, 30) }
   let(:arrive_at) { DateTime.new(2024, 1, 13, 13, 50) }
-  
+
   let(:fares) do
     [
       {
@@ -53,7 +53,7 @@ describe Segment do
           duration_in_minutes: 200,
           changeovers: 1,
           products: ["train"],
-          fares: fares 
+          fares: fares
         }
       )
     end
@@ -78,7 +78,7 @@ describe Segment do
         departure_at: departure_at
       }
     end
-  
+
     let(:fares) do
       [
         {
@@ -117,9 +117,56 @@ describe Segment do
           duration_in_minutes: 180+16,
           changeovers: 0,
           products: ["train"],
-          fares: fares 
+          fares: fares
         }
       )
+    end
+
+    context 'when a later departure date is given' do
+      let(:departure_at) { DateTime.new(2024, 1, 19, 7, 30) }
+
+      let(:fares) do
+        [
+          {
+            name: 'Standard',
+            price_in_cents: 17100,
+            currency: 'EUR',
+            comfort_class: 0
+          },
+          {
+            name: 'Standard Premier',
+            price_in_cents: 21000,
+            currency: 'EUR',
+            comfort_class: 0
+          },
+          {
+            name: 'Business Premier Amsterdam',
+            price_in_cents: 38525,
+            currency: 'EUR',
+            comfort_class: 0
+          }
+        ]
+      end
+
+      it 'only returns journeys that are later than the departure date' do
+        expect(subject.count).to eq(6)
+      end
+
+      it 'returns the first journey that departs after the departure date' do
+        expect(subject[0]).to eq(
+          {
+            departure_station: from,
+            departure_at: DateTime.new(2024, 1, 19, 8, 16, 0),
+            arrival_station: to,
+            arrival_at: DateTime.new(2024, 1, 19, 12, 32, 0, '+1'),
+            service_agencies: ["thetrainline"],
+            duration_in_minutes: 180+16,
+            changeovers: 0,
+            products: ["train"],
+            fares: fares
+          }
+        )
+      end
     end
   end
 end

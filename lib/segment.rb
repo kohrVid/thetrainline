@@ -74,7 +74,7 @@ class Segment
           products: products.uniq,
           fares: segment_fares
         ).to_h
-      end
+      end.compact
     end
 
     private
