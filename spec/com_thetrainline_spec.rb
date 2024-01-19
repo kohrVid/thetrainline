@@ -13,7 +13,7 @@ describe ComThetrainline do
 
   describe '.find' do
     before do
-      allow(Journey).to receive(:new).and_return(journey)
+      allow(JourneyApi).to receive(:new).and_return(journey)
       allow(journey).to receive(:search).and_return(response_body)
     end
 

@@ -1,0 +1,34 @@
+{
+    "searchLocations": [
+       {
+            "name": "Rotterdam Centraal",
+            "countryCode": "NL",
+            "code": "urn:trainline:generic:loc:8670",
+            "score": 0.008200825,
+            "longitude": 4.4688,
+            "latitude": 51.9251,
+            "extraInfo": {
+                "attributes": [
+                    "MainStation"
+                ]
+            },
+            "locationType": "station",
+            "defaultLanguage": "en",
+            "parent": {
+                "locationType": "city",
+                "name": "Rotterdam"
+            },
+            "timezone": "Europe/Amsterdam",
+            "connections": [
+                "urn:trainline:connection:benerail",
+                "urn:trainline:connection:db",
+                "urn:trainline:connection:db_affiliate",
+                "urn:trainline:connection:db_pst",
+                "urn:trainline:connection:eurostardirect",
+                "urn:trainline:connection:obb",
+                "urn:trainline:connection:renfe",
+                "urn:trainline:connection:pao_sncf"
+            ]
+        }
+    ]
+}

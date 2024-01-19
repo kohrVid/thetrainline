@@ -1,0 +1,30 @@
+{
+    "searchLocations": [
+      {
+            "name": "London St Pancras International",
+            "countryCode": "GB",
+            "code": "urn:trainline:generic:loc:STP1555gb",
+            "score": 0.19262773,
+            "longitude": -0.1272,
+            "latitude": 51.5324,
+            "shortName": "STP",
+            "extraInfo": {
+                "attributes": [
+                    "MainStation"
+                ]
+            },
+            "locationType": "station",
+            "defaultLanguage": "en",
+            "parent": {
+                "locationType": "stationGroup",
+                "name": "London"
+            },
+            "timezone": "Europe/London",
+            "connections": [
+                "urn:trainline:connection:atoc",
+                "urn:trainline:connection:eurostardirect",
+                "urn:trainline:connection:pao_sncf"
+            ]
+        }
+    ]
+}

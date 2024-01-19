@@ -2,17 +2,13 @@
 
 require 'date'
 require 'faraday'
-require './lib/journey.rb'
+require './lib/journey_api.rb'
 
 class ComThetrainline
   class << self
     def find(from, to, departure_at)
-      journey = Journey.new(
-        origin_urn: 'urn:trainline:generic:loc:ASC4700gb',
-        destination_urn: 'urn:trainline:generic:loc:ASH5641gb'
-      )
-
-      journey.search(departure_at)
+      journey = JourneyApi.new(from: from, to: to)
+      trainline_response = journey.search(departure_at)
     end
   end
 end
