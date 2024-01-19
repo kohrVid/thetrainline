@@ -24,9 +24,19 @@ To run this application locally, first run the server binary on port 9000:
 
     ./server
 
-Next, run the ruby file in another terminal:
+To run on a different port, configure this using an environment variable:
 
-    ruby ./lib/com_thetrainline.rb
+    PORT=3000 ./server
+
+The Trainline application can then be run in another terminal:
+
+    ruby ./main.rb
+
+If there is a need to query a different host, this can also be set with an
+environment variable:
+
+    TRAINLINE_HOST="http://localhost:3000" ruby ./main.rb
+
 
 This is not a CLI, instead the class method defined is called in the `main.rb`
 file. As such, it does not accept any user input.

@@ -2,22 +2,17 @@
 
 require 'date'
 require 'faraday'
+require './lib/journey.rb'
 
 class ComThetrainline
   class << self
     def find(from, to, departure_at)
-      conn = Faraday.new(
-        url: 'http://localhost:9000',
-        headers: { 'Content-Type' => 'application/json' }
+      journey = Journey.new(
+        origin_urn: 'urn:trainline:generic:loc:ASC4700gb',
+        destination_urn: 'urn:trainline:generic:loc:ASH5641gb'
       )
 
-      response = conn.post('api/journey-search') do |req|
-        req.body = { query: '' }.to_json
-      end
-
-      puts response.body
-
-      []
+      journey.search(departure_at)
     end
   end
 end
