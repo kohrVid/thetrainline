@@ -9,7 +9,10 @@ describe ComThetrainline do
   let(:to) { 'Rotterdam Centraal' }
   let(:departure_at) { DateTime.new(2024, 1, 13) }
   let(:journey) { instance_double('Journey') }
-  let(:response_body) { [] }
+
+  let(:response_body) do
+    JSON.load_file('spec/support/segments.json').to_json
+  end
 
   describe '.find' do
     before do
@@ -17,8 +20,10 @@ describe ComThetrainline do
       allow(journey).to receive(:search).and_return(response_body)
     end
 
-    it 'returns an array' do
-      expect(described_class.find(from, to, departure_at)).to match_array(response_body)
+    it 'parses segments' do
+      expect(Segment).to receive(:parse_segments)
+
+      described_class.find(from, to, departure_at)
     end
   end
 end
