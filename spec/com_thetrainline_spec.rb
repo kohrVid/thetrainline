@@ -25,5 +25,13 @@ describe ComThetrainline do
 
       described_class.find(from, to, departure_at)
     end
+
+    context 'when the API is unavailable' do
+      let(:response_body) { {}.to_json }
+
+      it 'returns an empty JSON object' do
+        expect(described_class.find(from, to, departure_at)).to eq({})
+      end
+    end
   end
 end

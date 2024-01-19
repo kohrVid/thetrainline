@@ -24,6 +24,9 @@ class JourneyApi
     end
 
     response.body
+
+  rescue Faraday::ConnectionFailed, Errno::ECONNREFUSED
+    return {}.to_json
   end
 
   private
